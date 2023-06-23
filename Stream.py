@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
+import os
 
 st.set_page_config(layout="wide")
 
@@ -16,7 +17,7 @@ def read_feather(source_file):
     return df
 
 df = read_feather("Data/Tonghop/")
-data = df.groupby(['Tên sản phẩm']).agg({"Số lượng":np.sum}).reset_index().sort_values(by="Số lượng",ascending=False).head(10)
+data = df.groupby(['Tên sản phẩm']).agg({"Số lượng nhập":np.sum}).reset_index().sort_values(by="Số lượng nhập",ascending=False).head(10)
 
 
 st.sidebar.header("Bộ lọc")
@@ -29,10 +30,10 @@ Store = st.sidebar.multiselect(
 
 df_selection = data.query("`Tên sản phẩm` == @Store")
 
-pie_chart = px.pie(df_selection, values='Số lượng', names='Tên sản phẩm', title='Top 10 SKU')
+pie_chart = px.pie(df_selection, values='Số lượng nhập', names='Tên sản phẩm', title='Top 10 SKU')
 #st.plotly_chart(pie_chart)
 
-bar_chart = px.bar(df_selection, x='Tên sản phẩm', y='Số lượng')
+bar_chart = px.bar(df_selection, x='Tên sản phẩm', y='Số lượng nhập')
 #st.plotly_chart(bar_chart)
 
 left_columns, right_columns = st.columns(2)
