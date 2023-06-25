@@ -6,3 +6,4 @@ polars;
 requests;
 numpy;
 plotly;
+pyarrow;
