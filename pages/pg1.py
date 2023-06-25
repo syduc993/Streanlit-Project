@@ -7,7 +7,7 @@ import pandas as pd
 import polars as pl
 import numpy as np
 import os
-from jupyter_dash import JupyterDash
+#from jupyter_dash import JupyterDash
 from dash import Dash, dcc, html, Input, Output, State, callback
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
