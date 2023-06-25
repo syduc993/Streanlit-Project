@@ -1,3 +1,4 @@
 pandas;
 gunicorn==19.7.1;
 dash;
+dash_bootstrap_components;
