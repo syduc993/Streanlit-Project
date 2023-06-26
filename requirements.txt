@@ -1,8 +1,7 @@
 pandas;
-gunicorn==19.7.1;
+gunicorn;
 dash;
 dash_bootstrap_components;
-polars;
 requests;
 numpy;
 plotly;

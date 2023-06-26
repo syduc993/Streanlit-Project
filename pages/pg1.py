@@ -2,9 +2,7 @@ import dash
 from dash import dcc, html, callback, Output, Input
 import plotly.express as px
 import dash_bootstrap_components as dbc
-
 import pandas as pd
-import polars as pl
 import numpy as np
 import os
 #from jupyter_dash import JupyterDash
