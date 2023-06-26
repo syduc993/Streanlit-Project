@@ -27,6 +27,7 @@ def read_feather(source_file):
 #data = df.groupby(['Date','Mã sản phẩm','Tên sản phẩm','Mã siêu thị','Tên ST','RSM tháng 6','AM tháng 6','Miền','Tỉnh/thành','Trạng thái kinh doanh','Nhóm hàng']).sum().reset_index()
 df = read_feather("Data/Tonghop/")
 app = JupyterDash(__name__)
+server = app.server
 product_list = df['Tên sản phẩm'].unique().tolist()
 sub_group_list = df['Nhóm hàng'].unique().tolist()
 store_list = df['Mã siêu thị'].unique().tolist()
