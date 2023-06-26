@@ -4,7 +4,7 @@ import plotly.express as px
 import dash_bootstrap_components as dbc
 import pandas as pd
 import numpy as np
-import os
+import requests
 #from jupyter_dash import JupyterDash
 from dash import Dash, dcc, html, Input, Output, State, callback
 from plotly.subplots import make_subplots
@@ -16,17 +16,30 @@ pio.templates.default = "seaborn"
 
 dash.register_page(__name__, path='/', name='Home') # '/' is home page
 
-def read_feather(source_file):
-    feather_file_list = os.listdir(source_file)
+
+def load_data():
+    username = 'syduc993'
+    repository = 'Streanlit-Project'
+    folder = 'Data/Tonghop'
+
+    url = f'https://api.github.com/repos/{username}/{repository}/contents/{folder}'
+
+    response = requests.get(url)
+    contents = response.json()
     df = pd.DataFrame()
-    for feather_files in feather_file_list:
-        if feather_files.endswith(".feather"):
-            strfile = source_file + feather_files
-            df1 = pd.read_feather(strfile)
+    # Loop through the contents of the folder
+    for item in contents:
+        # Check if the item is a file
+        if item['type'] == 'file':
+            # Get the name and download URL of the file
+            filename = item['name']
+            file_url = item['download_url']
+            # Do something with the file URL (e.g. download the file)
+            df1 = pd.read_feather(file_url)
             df = pd.concat([df, df1], ignore_index=True, sort=False)
     return df
 
-df = read_feather("Data/Tonghop/")
+df = load_data()
 
 # app = JupyterDash(__name__)
 product_list = df['Tên sản phẩm'].unique().tolist()
