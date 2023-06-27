@@ -3,7 +3,7 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc
 
 app = dash.Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.SPACELAB])
-server = app.server
+# server = app.server
 SIDEBAR_STYLE = {
     "position": "fixed",
     "top": 0,
